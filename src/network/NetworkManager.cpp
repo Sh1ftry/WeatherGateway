@@ -1,6 +1,6 @@
 #include <WiFiManager.h>
 #include <ArduinoLog.h>
-#include "NetworkManager.h"
+#include "../../include/network/NetworkManager.h"
 
 void NetworkManager::setup()
 {

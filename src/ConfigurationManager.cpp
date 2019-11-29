@@ -3,8 +3,8 @@
 #include <ArduinoJson.h>
 #include <ArduinoLog.h>
 
-#include "Configuration.h"
-#include "ConfigurationManager.h"
+#include "../include/Configuration.h"
+#include "../include/ConfigurationManager.h"
 
 void ConfigurationManager::setup()
 {

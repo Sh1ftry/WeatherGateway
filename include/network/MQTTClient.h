@@ -6,6 +6,8 @@
 #include "../Configuration.h"
 
 #define MQTT_CONNECT_MAX_TRIES 5
+#define MAX_SUBSCRIPTIONS 2
+#define MAX_PAYLOAD_SIZE 64
 
 class MQTTClient: public Runnable
 {
@@ -19,10 +21,17 @@ class MQTTClient: public Runnable
         {
             return this->connectionRetries > 5;
         }
+        void subscribe(char* topic, void (*callback)(const char*));
+        void (*getTopicCallback(const char*))(const char*);
         
     private:
         void reconnect(bool);
-
+        struct Subscription {
+            bool set;
+            char* topic;
+            void (*callback)(const char*);
+        };
+        Subscription subscriptions[MAX_SUBSCRIPTIONS];
         PubSubClient client;
         const Configuration& configuration;
         const char* id;
